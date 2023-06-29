@@ -14,11 +14,7 @@ import Home from './pages/home/home';
 import Navbar from './components/Navbar/Navbar';
 import FormUser from './components/FormUser/FormUser';
 import UserProfile from './pages/userProfile/userProfile';
-import axios from 'axios';
-import io from 'socket.io-client';
 import './app.scss';
-
-const socket = io('http://localhost:4000');
 
 export interface Stremer {
   name: string;
