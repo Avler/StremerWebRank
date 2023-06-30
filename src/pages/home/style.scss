@@ -46,19 +46,19 @@
     .section-list-cont {
       display: flex;
       flex-direction: column;
-
       gap: 20px;
       justify-content: space-evenly;
       border-bottom: 1px solid darken($color: #f99185, $amount: 10);
       border-top: 1px solid darken($color: #f99185, $amount: 10);
       width: 600px;
       height: 80px;
-      @media (max-width: 550px) {
+      @media (max-width: 600px) {
         width: 320px;
       }
       .section-list {
         display: flex;
         justify-content: center;
+        align-items: center;
         width: 100%;
         gap: 40px;
         font-size: 1.4rem;
@@ -83,6 +83,10 @@
           @media (max-width: 550px) {
             width: 60px;
           }
+        }
+        .section-list-info-score {
+          width: 50px;
+          text-align: center;
         }
         .section-list-info-name:hover {
           color: rgb(242, 179, 32);
