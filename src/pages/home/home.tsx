@@ -14,15 +14,13 @@ interface homeProps {
   loginPanelShadow: boolean;
   dataStremers: Stremer[];
   fetchData: () => Promise<void>;
-  updateVote: Stremer[];
+  updateVote: Stremer | undefined;
 }
 
-const home: React.FC<homeProps> = ({
-  loginPanelShadow,
-  dataStremers,
-  fetchData,
-  updateVote,
-}) => {
+const home: React.FC<homeProps> = (
+  { loginPanelShadow, dataStremers, fetchData },
+  { updateVote }
+) => {
   const updatedData = dataStremers.map((elm) => {
     return elm.id === updateVote.id ? { ...elm, vote: updateVote.vote } : elm;
   });
