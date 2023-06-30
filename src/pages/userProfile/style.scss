@@ -60,6 +60,12 @@
         height: 300px;
         border-radius: 15px;
       }
+      .name {
+        text-align: center;
+        font-size: 2rem;
+        padding-top: 20px;
+        color: #fff;
+      }
     }
     .stremer-section-cont-elm-des {
       .Kick,
@@ -67,7 +73,7 @@
       .Twitch,
       .TikTok,
       .Rumble {
-        width: 500px;
+        width: 600px;
         font-size: 4rem;
         text-align: center;
         @media (max-width: 1200px) {
@@ -127,7 +133,6 @@
         -webkit-text-fill-color: transparent;
       }
       .des {
-        width: 400px;
         margin-top: 60px;
         font-size: 1.4rem;
         color: #fff;

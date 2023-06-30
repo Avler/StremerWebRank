@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
 import Searchbar from '../Searchbar/Searchbar';
 import { Stremer } from '../../App';
@@ -58,7 +58,7 @@ const Navbar: React.FC<HeaderProps> = ({ showPanel, dataStremers }) => {
               />
             </form>
             <li className="nav-items" onClick={userPanel}>
-              <FontAwesomeIcon icon={faStar} size="xl" />
+              <FontAwesomeIcon icon={faUserPlus} size="xl" />
               <span className="text-items">Add Stremer</span>
             </li>
           </ul>

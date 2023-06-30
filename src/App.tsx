@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from './redux/features/productSlice';
-import supabase from './supabase';
+import supabase, { newUpdate } from './supabase';
 import Home from './pages/home/home';
 import Navbar from './components/Navbar/Navbar';
 import FormUser from './components/FormUser/FormUser';
@@ -33,11 +33,16 @@ const App = () => {
       state.product.value.item
   );
 
+  const [updateVote, setUpdateVote] = useState<Stremer[]>([]);
   const [loginPanel, setLoginPanel] = useState<boolean>(false);
-
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [newUpdate]);
+
+  newUpdate((newUpdatedData: any) => {
+    setUpdateVote(newUpdatedData.new as Stremer[]);
+  });
+
   async function fetchData() {
     const { data, error } = await supabase.from('stremers').select();
     if (error) {
@@ -85,6 +90,7 @@ const App = () => {
             <Home
               loginPanelShadow={loginPanel}
               dataStremers={dataStremers}
+              updateVote={updateVote}
               fetchData={fetchData}
             />
           }

@@ -14,14 +14,21 @@ interface homeProps {
   loginPanelShadow: boolean;
   dataStremers: Stremer[];
   fetchData: () => Promise<void>;
+  updateVote: Stremer[];
 }
 
 const home: React.FC<homeProps> = ({
   loginPanelShadow,
   dataStremers,
   fetchData,
+  updateVote,
 }) => {
-  const dataSorted = [...dataStremers].sort((a, b) => b.vote - a.vote);
+  const updatedData = dataStremers.map((elm) => {
+    return elm.id === updateVote.id ? { ...elm, vote: updateVote.vote } : elm;
+  });
+
+  console.log(updatedData);
+  const dataSorted = [...updatedData].sort((a, b) => b.vote - a.vote);
 
   const section = dataSorted.map((elm, index) => {
     const sequentialNumber = index + 1;

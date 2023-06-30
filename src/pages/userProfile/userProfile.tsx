@@ -20,6 +20,7 @@ const UserProfile = ({ dataStremers, loginPanelShadow }: homeProps) => {
       <div key={elm.id} className="stremer-section-cont-elm">
         <div>
           <img src={elm.img} alt="stremer image" className="stremer-img" />
+          <p className="name">{elm.name}</p>
         </div>
         <div className="stremer-section-cont-elm-des">
           <p className={elm.platform}>{elm.platform} Stremer</p>
