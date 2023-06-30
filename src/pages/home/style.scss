@@ -31,7 +31,7 @@
     min-height: 700px;
     .section-cont-titles {
       display: flex;
-      margin-left: 50px;
+      margin-left: 30px;
       justify-content: flex-start;
       gap: 60px;
       color: rgb(21, 111, 146);
@@ -39,7 +39,7 @@
       font-size: 1.3rem;
       @media (max-width: 550px) {
         font-size: 1rem;
-        margin-left: 30px;
+        margin-left: 20px;
         gap: 30px;
       }
     }
@@ -69,7 +69,7 @@
         .section-list-info {
           width: 100px;
           @media (max-width: 550px) {
-            width: 60px;
+            width: 30px;
           }
         }
         .icon {
@@ -78,7 +78,7 @@
         .section-list-info-name {
           width: 100px;
           cursor: pointer;
-          padding-right: 20px;
+          padding-right: 40px;
           color: #ffffff;
           @media (max-width: 550px) {
             width: 60px;

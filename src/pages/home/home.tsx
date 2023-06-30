@@ -76,7 +76,7 @@ const home: React.FC<homeProps> = ({
           <Link to={elm.routes}>
             <p className="section-list-info-name">{elm.name}</p>{' '}
           </Link>
-          <p className="section-list-info">
+          <p className="section-list-info-score">
             Score{' '}
             <span
               className={elm.vote > 0 ? 'positive-score' : 'negative-score'}
