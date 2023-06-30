@@ -40,7 +40,6 @@ const Searchbar: React.FC<SearchbarProps> = ({
               >
                 <img src={elm.img} />
                 <span>{elm.name}</span>
-                <span>{elm.platform} Stremer</span>
               </Link>
             )
           )}
