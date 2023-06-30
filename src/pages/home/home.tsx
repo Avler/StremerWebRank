@@ -14,7 +14,9 @@ interface homeProps {
   loginPanelShadow: boolean;
   dataStremers: Stremer[];
   fetchData: () => Promise<void>;
+  setEventLive: React.Dispatch<React.SetStateAction<string | undefined>>;
   updateVote: Stremer[] | any;
+  eventLive: string | any;
 }
 
 const home: React.FC<homeProps> = ({
@@ -22,12 +24,15 @@ const home: React.FC<homeProps> = ({
   dataStremers,
   fetchData,
   updateVote,
+  eventLive,
+  setEventLive,
 }) => {
   const updatedData = dataStremers.map((elm) => {
     return elm.id === updateVote.id ? { ...elm, vote: updateVote.vote } : elm;
   });
 
-  console.log(updatedData);
+  const insertedData = dataStremers;
+  console.log(insertedData);
   const dataSorted = [...updatedData].sort((a, b) => b.vote - a.vote);
 
   const section = dataSorted.map((elm, index) => {

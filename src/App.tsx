@@ -32,8 +32,8 @@ const App = () => {
     (state: { product: { value: { item: Stremer[] } } }) =>
       state.product.value.item
   );
-
   const [updateVote, setUpdateVote] = useState<Stremer[]>([]);
+  const [eventLive, setEventLive] = useState<string>();
   const [loginPanel, setLoginPanel] = useState<boolean>(false);
   useEffect(() => {
     fetchData();
@@ -41,8 +41,12 @@ const App = () => {
 
   newUpdate((newUpdatedData) => {
     setUpdateVote(newUpdatedData.new);
+    setEventLive(newUpdatedData.eventType);
   });
-
+  if (eventLive === 'INSERT') {
+    fetchData();
+    setEventLive('');
+  }
   async function fetchData() {
     const { data, error } = await supabase.from('stremers').select();
     if (error) {
@@ -92,6 +96,8 @@ const App = () => {
               dataStremers={dataStremers}
               updateVote={updateVote}
               fetchData={fetchData}
+              eventLive={eventLive}
+              setEventLive={setEventLive}
             />
           }
         />
