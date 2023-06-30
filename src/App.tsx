@@ -33,7 +33,7 @@ const App = () => {
       state.product.value.item
   );
 
-  const [updateVote, setUpdateVote] = useState<Stremer>();
+  const [updateVote, setUpdateVote] = useState<Stremer[]>([]);
   const [loginPanel, setLoginPanel] = useState<boolean>(false);
   useEffect(() => {
     fetchData();
