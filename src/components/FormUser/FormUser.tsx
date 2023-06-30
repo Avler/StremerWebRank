@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useFormik } from 'formik';
 import supabase from '../../supabase';
+import * as Yup from 'yup';
 import './style.scss';
 
 interface FormData {
@@ -18,6 +19,14 @@ interface LoginFormProps {
   closePanel: (state: boolean) => void;
   fetchData: () => Promise<void>;
 }
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string().required('Name is required'), // Walidacja dla pola "name"
+  platform: Yup.string().required('Platform is required'), // Walidacja dla pola "platform"
+  description: Yup.string().required('Description is required'), // Walidacja dla pola "description"
+  img: Yup.mixed().required('Image is required'), // Walidacja dla pola "img"
+});
+
 const FormUser: React.FC<LoginFormProps> = ({ closePanel, fetchData }) => {
   async function getBase64ImageFromUrl(imageUrl: any) {
     const res = await fetch(imageUrl);
@@ -41,21 +50,29 @@ const FormUser: React.FC<LoginFormProps> = ({ closePanel, fetchData }) => {
       platform: '',
       img: null,
     },
+    validationSchema,
     onSubmit: async (values: any, actions: any) => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       const img = URL.createObjectURL(values.product_img);
       const imgBase64 = await getBase64ImageFromUrl(img);
 
-      await supabase.from('stremers').insert({
-        name: values.name,
-        description: values.description,
-        platform: values.platform,
-        vote: values.vote,
-        img: imgBase64,
-      });
-      closePanel(false);
-      fetchData();
-      actions.resetForm();
+      try {
+        await validationSchema.validate(values);
+
+        await supabase.from('stremers').insert({
+          name: values.name,
+          description: values.description,
+          platform: values.platform,
+          vote: values.vote,
+          img: imgBase64,
+        });
+
+        closePanel(false);
+        fetchData();
+        actions.resetForm();
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
 
@@ -78,6 +95,9 @@ const FormUser: React.FC<LoginFormProps> = ({ closePanel, fetchData }) => {
             className="user-panel-input"
             onChange={formik.handleChange}
           />
+          {formik.touched.name && formik.errors.name && (
+            <div className="error-message">{formik.errors.name}</div>
+          )}
           <h3 className="user-panel-title">Platform</h3>
           <select
             className="user-panel-input"
@@ -92,6 +112,9 @@ const FormUser: React.FC<LoginFormProps> = ({ closePanel, fetchData }) => {
             <option value="TikTok">TikTok</option>
             <option value="Rumble">Rumble</option>
           </select>
+          {formik.touched.platform && formik.errors.platform && (
+            <div className="error-message">{formik.errors.platform}</div>
+          )}
           <h3 className="user-panel-title">Description</h3>
           <textarea
             className="text-area-description"
@@ -102,6 +125,9 @@ const FormUser: React.FC<LoginFormProps> = ({ closePanel, fetchData }) => {
             cols={35}
             onChange={formik.handleChange}
           ></textarea>
+          {formik.touched.description && formik.errors.description && (
+            <div className="error-message">{formik.errors.description}</div>
+          )}
           <h3 className="user-panel-title">Picture Choose The File</h3>
           <input
             type="file"
@@ -115,6 +141,9 @@ const FormUser: React.FC<LoginFormProps> = ({ closePanel, fetchData }) => {
             }}
             className="file-input"
           />
+          {formik.touched.img && formik.errors.img && (
+            <div className="error-message">{formik.errors.img}</div>
+          )}
         </div>
         <div className="user-panel-btn-cont">
           <button className="user-panel-btn" type="submit">

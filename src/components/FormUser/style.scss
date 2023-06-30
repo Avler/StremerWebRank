@@ -20,7 +20,7 @@
     rgba(110, 31, 47, 1) 100%
   );
   width: 480px;
-  height: 560px;
+  height: 580px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,6 +46,10 @@
     @media (max-width: 500px) {
       align-items: center;
     }
+  }
+  .error-message {
+    color: red;
+    margin-top: 5px;
   }
   .text-area-description {
     margin-top: 10px;
