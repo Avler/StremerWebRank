@@ -7,9 +7,9 @@ Every Vote or Stremet sumbimtion is made Live so other users can see the changes
 
 Tech  i use :
 
--React
--Typescript
--Redux 
--Vite
--SCSS
--SUPABASE
+- React
+- Typescript
+- Redux 
+- Vite
+- SCSS
+- SUPABASE
